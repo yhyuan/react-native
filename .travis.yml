@@ -16,10 +16,11 @@ after_script:
   - rm packager.pid
 
 # Automatically publish the website
-after_success: '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && (cd website; npm install; ./setup.sh; ./publish.sh; echo) || echo'
+after_success: 'echo "machine github.com login reactjs-bot password $GITHUB_TOKEN" >~/.netrc; (cd website; npm install; ./setup.sh; ./publish.sh)'
 
 env:
-  - secure: "g8Xjbslq4R+3oLVgBvXM5QhiJ+7q+H+dH4+sXReyyZ64M5gf32U7oOjQNVkdx79dnGFc6a619otGsX4RiEkQlkiR+4uCgJUIgPwN4YFCIgYu4Z/0FnbbRu5yyywh5zv4WwGmAtMkgGztoMBnps5gCiPUM/RGIqwVk0Ghbmh5c2k="
+  global:
+    - secure: "iBEHIQraDdkDkO6GmoOMcqkAB3N4cXYlSxopkdu8Dkwyokui6m/cwxpfWPilCMEeEZ8uXBt9nnrguGW+NA4a4QvANMDVO5CYxKf4X+1BcBN1I21yDDUW6WBLCcdbuGDCcGPcPrD0OoQ3HW9wreIxc/jFPCLoVXp2FHBT0ZwGwXE="
 
 branches:
   only:
